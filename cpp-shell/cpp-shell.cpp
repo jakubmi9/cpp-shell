@@ -26,8 +26,13 @@ void sh::shell::start()
 	{
 		if (this->_c == '\n' || this->_c == '\r')
 		{
-			this->command.push_back(_arg);
-			this->_arg.clear();
+			if (this->_arg.empty() == 0)
+			{
+				this->command.push_back(_arg);
+				this->_arg.clear();
+			}
+			else
+				start();
 			break;
 		}
 		else if (this->_c == ' ')
@@ -53,6 +58,8 @@ void sh::shell::substart()
 				this->command.push_back(_arg);
 				this->_arg.clear();
 			}
+			else
+				substart();
 			break;
 		}
 		else if (this->_c == ' ')
