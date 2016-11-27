@@ -24,9 +24,24 @@ int main()
 					{
 						if(main->command.at(2) == "nearby")
 						{
+							if(main->command.size() != 3)
+							{
+								std::cout << "invalid syntax!" << std::endl;
+								break;
+							}
 							std::cout << "Nearby users:" << std::endl;
 							break;
 						}
+						else
+						{
+							std::cout << "invalid syntax!" << std::endl;
+							break;
+						}
+					}
+					else
+					{
+						std::cout << "invalid syntax!" << std::endl;
+						break;
 					}
 				}
 				catch(const std::out_of_range&)
