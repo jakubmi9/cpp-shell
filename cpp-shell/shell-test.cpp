@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cpp-shell.h"
+//==============================================================================
 int main()
 {
 	const std::string greet = "testing program for cpp-shell v0.1";
@@ -53,3 +54,4 @@ int main()
 		main->command.clear();
 	}
 }
+//==============================================================================
