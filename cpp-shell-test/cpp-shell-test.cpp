@@ -8,6 +8,7 @@ int main()
 {
 	const std::string greet = "testing program for cpp-shell v0.1";
 	const std::string prompt = "test";
+	std::cout << "gsajgsfbafsdbnafl;bnaf;bnfabjnfda;lbfnbifasdnovbsfdibsfbi";
 	sh::shell *main = new sh::shell(greet, prompt);
 	while(true)
 	{

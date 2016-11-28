@@ -19,6 +19,9 @@ namespace sh
 		///<param name="greet">greeting message for your program, shows only once upon initialization</param>
 		///<param name="prompt">prompt message for your program, shows at the beginning of every line and it is followed by a $ symbol</param>
 		shell(std::string greet, std::string prompt);
+		///<summary>initializes new shell object with only a prompt symbol</summary>
+		///<param name="prompt">prompt message for your program, shows at the beginning of every line and it is followed by a $ symbol</param>
+		shell(std::string prompt);
 		~shell();
 		///<summary>starts primary shell that takes user input. that input can be found in the [std::vector &lt;string&gt; command] property. should be run in an endless loop, if user does not provide enough input, subprompt() should be used to get the additional input</summary>
 		void prompt();

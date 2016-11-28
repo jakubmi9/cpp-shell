@@ -9,7 +9,24 @@ sh::shell::shell(std::string _g, std::string _p)
 	this->_ps1prompt.append(1, '$');
 	this->_ps1prompt.append(1, ' ');
 	this->_ps2prompt = "> ";
-	std::cout << this->_greet << std::endl;
+	#ifdef __linux__
+	system("clear");
+	#endif // __linux__
+	#ifdef __APPLE__
+	system("clear");
+	#endif // __APPLE__
+	#ifdef _WIN32
+	system("cls");
+	#endif // _WIN32
+	std::cout << this->_greet << std::endl << std::endl;
+}
+//==============================================================================
+sh::shell::shell(std::string _p)
+{
+	this->_ps1prompt = _p;
+	this->_ps1prompt.append(1, '$');
+	this->_ps1prompt.append(1, ' ');
+	this->_ps2prompt = "> ";
 }
 //==============================================================================
 sh::shell::~shell()
@@ -19,11 +36,11 @@ sh::shell::~shell()
 void sh::shell::prompt()
 {
 	std::cout << this->_ps1prompt;
-	while (this->_c = getchar())
+	while(this->_c = getchar())
 	{
-		if (this->_c == '\n' || this->_c == '\r')
+		if(this->_c == '\n' || this->_c == '\r')
 		{
-			if (this->_arg.empty() == 0)
+			if(this->_arg.empty() == 0)
 			{
 				this->command.push_back(_arg);
 				this->_arg.clear();
@@ -32,7 +49,7 @@ void sh::shell::prompt()
 				prompt();
 			break;
 		}
-		else if (this->_c == ' ')
+		else if(this->_c == ' ')
 		{
 			this->command.push_back(_arg);
 			this->_arg.clear();
@@ -45,11 +62,11 @@ void sh::shell::prompt()
 void sh::shell::subprompt()
 {
 	std::cout << this->_ps2prompt;
-	while (this->_c = getchar())
+	while(this->_c = getchar())
 	{
-		if (this->_c == '\n' || this->_c == '\r')
+		if(this->_c == '\n' || this->_c == '\r')
 		{
-			if (this->_arg.empty() == 0)
+			if(this->_arg.empty() == 0)
 			{
 				this->command.push_back(_arg);
 				this->_arg.clear();
@@ -58,7 +75,7 @@ void sh::shell::subprompt()
 				subprompt();
 			break;
 		}
-		else if (this->_c == ' ')
+		else if(this->_c == ' ')
 		{
 			this->command.push_back(_arg);
 			this->_arg.clear();
