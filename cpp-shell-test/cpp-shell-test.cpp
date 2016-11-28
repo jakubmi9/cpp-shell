@@ -6,7 +6,7 @@
 
 int main()
 {
-	const std::string greet = "testing program for cpp-shell v0.1\nLicensed under GPLv3";
+	const std::string greet = "testing program for cpp-shell v0.1\nLicensed under GNU GPLv3";
 	const std::string prompt = "test";
 	bool loaded = 0;
 	sh::shell *main = new sh::shell(greet, prompt);
