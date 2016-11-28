@@ -1,6 +1,9 @@
-#include <iostream>
-#include "cpp-shell.h"
-//==============================================================================
+// cpp-shell-test.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "../cpp-shell/cpp-shell.h"
+
 int main()
 {
 	const std::string greet = "testing program for cpp-shell v0.1";
@@ -8,7 +11,7 @@ int main()
 	sh::shell *main = new sh::shell(greet, prompt);
 	while(true)
 	{
-		main->start();
+		main->prompt();
 		if(main->command[0] == "exit")
 		{
 			delete main;
@@ -47,11 +50,11 @@ int main()
 				}
 				catch(const std::out_of_range&)
 				{
-					main->substart();
+					main->subprompt();
 				}
 			}
 		}
 		main->command.clear();
 	}
 }
-//==============================================================================
+

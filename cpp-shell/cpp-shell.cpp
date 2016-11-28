@@ -16,7 +16,7 @@ sh::shell::~shell()
 {
 }
 //==============================================================================
-void sh::shell::start()
+void sh::shell::prompt()
 {
 	std::cout << this->_ps1prompt;
 	while (this->_c = getchar())
@@ -29,7 +29,7 @@ void sh::shell::start()
 				this->_arg.clear();
 			}
 			else
-				start();
+				prompt();
 			break;
 		}
 		else if (this->_c == ' ')
@@ -42,7 +42,7 @@ void sh::shell::start()
 	}
 }
 //==============================================================================
-void sh::shell::substart()
+void sh::shell::subprompt()
 {
 	std::cout << this->_ps2prompt;
 	while (this->_c = getchar())
@@ -55,7 +55,7 @@ void sh::shell::substart()
 				this->_arg.clear();
 			}
 			else
-				substart();
+				subprompt();
 			break;
 		}
 		else if (this->_c == ' ')
