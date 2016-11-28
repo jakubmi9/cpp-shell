@@ -1,2 +1,2 @@
 # cpp-shell
-a shell-alike user interface for c++ console programs
+a static library providing bash-style user interface for c++ console applications
