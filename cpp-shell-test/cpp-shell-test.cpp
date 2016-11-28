@@ -6,17 +6,32 @@
 
 int main()
 {
-	const std::string greet = "testing program for cpp-shell v0.1";
-	const std::string prompt = "test";;
+	const std::string greet = "testing program for cpp-shell v0.1\nLicensed under GPLv3";
+	const std::string prompt = "test";
+	bool loaded = 0;
 	sh::shell *main = new sh::shell(greet, prompt);
 	while(true)
 	{
 		main->prompt();
 		if(main->command[0] == "exit")
 		{
-			delete main;
-			std::system("pause");
-			return 0;
+			if(loaded)
+			{
+				std::cout << "module is loaded. are you sure? Y/N" << std::endl;
+				main->subprompt();
+				if(main->command[1] == "Y"|| main->command[1] == "y")
+				{
+					delete main;
+					std::system("pause");
+					return 0;
+				}
+			}
+			else
+			{
+				delete main;
+				std::system("pause");
+				return 0;
+			}
 		}
 		if(main->command[0] == "list")
 		{
@@ -53,6 +68,16 @@ int main()
 					main->subprompt();
 				}
 			}
+		}
+		if(main->command[0] == "load")
+		{
+			main->submodule("module");
+			loaded = 1;
+		}
+		if(main->command[0] == "unload")
+		{
+			main->submodule();
+			loaded = 0;
 		}
 		main->command.clear();
 	}

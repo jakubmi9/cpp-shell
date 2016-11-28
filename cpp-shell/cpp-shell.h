@@ -8,9 +8,11 @@ namespace sh
 	class shell
 	{
 	private:
-		std::string _greet;
-		std::string _ps1prompt;
-		std::string _ps2prompt;
+		std::string _G;
+		std::string _oriG;
+		std::string _oriP;
+		std::string _PS1;
+		std::string _PS2;
 		std::string _arg;
 		char _c;
 	protected:
@@ -27,6 +29,10 @@ namespace sh
 		void prompt();
 		///<summary>starts secondary shell that awaits user input. it is used for additional input. input from this shell is supposed to be appended to the [std::vector &lt;string&gt; command] property. should be run in an endless loop</summary>
 		void subprompt();
+		///
+		void submodule(std::string name);
+		///
+		void submodule();
 		///<summary>contains all the arguments that the user typed in.</summary>
 		std::vector<std::string> command;
 	};

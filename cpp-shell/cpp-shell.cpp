@@ -4,29 +4,30 @@
 //==============================================================================
 sh::shell::shell(std::string _g, std::string _p)
 {
-	this->_greet = _g;
-	this->_ps1prompt = _p;
-	this->_ps1prompt.append(1, '$');
-	this->_ps1prompt.append(1, ' ');
-	this->_ps2prompt = "> ";
+	this->_oriG = _g;
+	this->_oriP = _p;
+	this->_G = _g;
+	this->_PS1 = _p;
+	this->_PS1.append("$ ");
+	this->_PS2 = "> ";
 	#ifdef __linux__
 	system("clear");
-	#endif // __linux__
+	#endif
 	#ifdef __APPLE__
 	system("clear");
-	#endif // __APPLE__
+	#endif
 	#ifdef _WIN32
 	system("cls");
-	#endif // _WIN32
-	std::cout << this->_greet << std::endl << std::endl;
+	#endif
+	std::cout << this->_G << std::endl << std::endl;
 }
 //==============================================================================
 sh::shell::shell(std::string _p)
 {
-	this->_ps1prompt = _p;
-	this->_ps1prompt.append(1, '$');
-	this->_ps1prompt.append(1, ' ');
-	this->_ps2prompt = "> ";
+	this->_oriP = _p;
+	this->_PS1 = _p;
+	this->_PS1.append("$ ");
+	this->_PS2 = "> ";
 }
 //==============================================================================
 sh::shell::~shell()
@@ -35,7 +36,7 @@ sh::shell::~shell()
 //==============================================================================
 void sh::shell::prompt()
 {
-	std::cout << this->_ps1prompt;
+	std::cout << this->_PS1;
 	while(this->_c = getchar())
 	{
 		if(this->_c == '\n' || this->_c == '\r')
@@ -61,7 +62,7 @@ void sh::shell::prompt()
 //==============================================================================
 void sh::shell::subprompt()
 {
-	std::cout << this->_ps2prompt;
+	std::cout << this->_PS2;
 	while(this->_c = getchar())
 	{
 		if(this->_c == '\n' || this->_c == '\r')
@@ -85,3 +86,16 @@ void sh::shell::subprompt()
 	}
 }
 //==============================================================================
+void sh::shell::submodule(std::string _n)
+{
+	this->_PS1 = this->_oriP;
+	this->_PS1.append(":");
+	this->_PS1.append(_n);
+	this->_PS1.append("$ ");
+}
+//==============================================================================
+void sh::shell::submodule()
+{
+	this->_PS1 = this->_oriP;
+	this->_PS1.append("$ ");
+}
