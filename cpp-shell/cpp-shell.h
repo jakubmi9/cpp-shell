@@ -29,9 +29,10 @@ namespace sh
 		void prompt();
 		///<summary>starts secondary shell that awaits user input. it is used for additional input. input from this shell is supposed to be appended to the [std::vector &lt;string&gt; command] property. should be run in an endless loop</summary>
 		void subprompt();
-		///
+		///<summary>sets a submodule name for the prompt. produces prompt:submodule$ until otherwise set</summary>
+		///<param name="name">name of the submodule</param>
 		void submodule(std::string name);
-		///
+		///<summary>restes pompt to the default value of prompt$</summary>
 		void submodule();
 		///<summary>contains all the arguments that the user typed in.</summary>
 		std::vector<std::string> command;
